@@ -1,4 +1,16 @@
 <script setup>
+import {ref} from 'vue'
+
+const counter = ref(0)
+
+const increment = () => {
+    counter.value++
+}
+
+const decrement = () => {
+    counter.value--
+}
+
 const {minNumber , maxNumber} = defineProps({
     minNumber:{
         type: Number,
@@ -8,16 +20,28 @@ const {minNumber , maxNumber} = defineProps({
         type: Number,
         required: true,
     },
+    //   example: {
+    //     type: String,
+    //     validator: (value) => value.includes('+', '-'),
+    //   }
+    // example: {
+    //   type: Array,
+    //   default: () => [1, 2, 3, 4],
+    // },
+    // example: {
+    //   type: Object,
+    //   default: () => ({ name: 'Julio Vazquez', age: 24, }),
+    // },
 })
 
 </script>
 
 <template>
     <div class="counter-game">
-        <span class="number">0</span>
+        <span class="number">{{ counter }}</span>
         <div class="button-group">
-            <button>-</button>
-            <button>+</button>
+            <button @click="decrement">-</button>
+            <button @click="increment">+</button>
         </div>
     </div>
 </template>
