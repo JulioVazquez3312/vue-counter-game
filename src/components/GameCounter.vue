@@ -1,17 +1,15 @@
 <script setup>
-    const number = 1000
+const {minNumber , maxNumber} = defineProps(['minNumber', 'maxNumber'])
 
-    const id = Math.random()
+console.log(minNumber)
+console.log(maxNumber)
 
-    const myAtrr = 'aria-label'
-
-    const ariaLabelValue = 'numero del contador'
 
 </script>
 
 <template>
     <div class="counter-game">
-        <span :[myAtrr]="ariaLabelValue" :id="id" class="number">{{ number }}</span>
+        <span class="number">0</span>
         <div class="button-group">
             <button>-</button>
             <button>+</button>
