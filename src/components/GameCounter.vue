@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { getRandomNumbers } from '@/utils/randomNumbers'
 import JSConfetti from 'js-confetti'
 
@@ -51,15 +51,22 @@ watch( counter, () => {
     
 } )
 
+const styleButton = computed( () => {
+    return win.value ? 'background: red;' : ''
+})
+
 </script>
 
 <template>
     <div class="counter-game">
         <span class="number">{{ counter }}</span>
         <div class="button-group">
-            <button :disabled="win" @click="decrement">-</button>
-            <button :disabled="win" @click="increment">+</button>
+            <button :disabled="win" :style="styleButton" @click="decrement">-</button>
+            <button :disabled="win" :style="styleButton" @click="increment">+</button>
         </div>
+        <p v-if="counter < numberToGuess">El Numero es mayor</p>
+        <p v-else-if="counter > numberToGuess">El Numero es menor</p>
+        <p v-show="win">Has ganado!!!</p>
     </div>
 </template>
 
